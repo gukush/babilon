@@ -26,36 +26,36 @@
       "id": 1,
       "initials": "J.K.",
       "fullName": "Jan Kowalski",
-      "photo": ""
+      "photo": "images/authors/belmondo.jpg"
     },
     {
       "id": 2,
       "initials": "A.N.",
       "fullName": "Anna Nowak",
-      "photo": ""
+      "photo": "images/authors/belmondo.jpg"
     },
     {
       "id": 3,
       "initials": "M.Z.",
       "fullName": "Marek Zieliński",
-      "photo": ""
+      "photo": "images/authors/belmondo.jpg"
     },
     {
       "id": 4,
       "initials": "K.W.",
       "fullName": "Katarzyna Wiśniewska",
-      "photo": ""
+      "photo": "images/authors/jan-kowalski.png"
     },
     {
       "id": 5,
       "initials": "T.B.",
-      "fullName": "Tomasz Borowski",
+      "fullName": "images/authors/jan-kowalski.png",
       "photo": ""
     },
     {
       "id": 6,
       "initials": "E.K.",
-      "fullName": "Ewa Kowalczyk",
+      "fullName": "images/authors/jan-kowalski.png",
       "photo": ""
     },
     {

@@ -8,7 +8,8 @@
         "file": "ostatnie-lato.txt",
         "title": "Ostatnie lato",
         "author": "Marek Zieliński",
-        "teaserImage": ""
+        "teaserImage": "",
+		"headerImage": "images/articles/kot.jpg"
       }
     ],
     "realia": [
@@ -16,7 +17,8 @@
         "file": "wspolczesna-kultura.txt",
         "title": "Współczesna kultura",
         "author": "Ewa Kowalczyk",
-        "teaserImage": ""
+        "teaserImage": "",
+		"headerImage": "images/articles/dinozaur.jpg"
       }
     ],
     "poezja": [
@@ -24,7 +26,8 @@
         "file": "droga-do-domu.txt",
         "title": "Droga do domu",
         "author": "Jan Kowalski",
-        "teaserImage": ""
+        "teaserImage": "",
+		"headerImage": "images/articles/izrael.png"
       }
     ]
   }

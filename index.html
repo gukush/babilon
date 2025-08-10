@@ -75,11 +75,17 @@
 </head>
 <body>
   <div class="container">
-    <!-- Big centered logo; clicking it always returns to MAIN -->
+    <!-- Big centered logo; clicking it always returns to MAIN
     <header class="header">
       <button class="logo logo-big" onclick="showPage('page-main')">
         <span>LOGO (miejsce na obraz)</span>
       </button>
+    </header>
+    -->
+    <header class="header">
+    <button class="logo logo-big" onclick="showPage('page-main')" aria-label="Strona główna">
+        <img src="images/logo.svg" alt="" aria-hidden="true">
+    </button>
     </header>
 
     <!-- MAIN (always the latest issue) -->

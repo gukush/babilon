@@ -26,8 +26,8 @@
     { "id": 1, "name": "J.K.", "fullName": "Jan Kowalski", "photo": "images/authors/belmondo.jpg", "bio": "Pisarz i dziennikarz z 20-letnim doświadczeniem", "specialization": "fikcja", "contact": "jan@example.com" },
     { "id": 2, "name": "A.N.", "fullName": "Anna Nowak", "photo": "images/authors/jan-kowalski.png", "bio": "Poetka i tłumaczka literatury współczesnej", "specialization": "poezja", "contact": "anna@example.com" },
     { "id": 3, "name": "M.Z.", "fullName": "Marek Zieliński", "photo": "images/authors/jan-kowalski.png", "bio": "Reporter i fotograf dokumentalny", "specialization": "realia", "contact": "marek@example.com" },
-    { "id": 4, "name": "K.W.", "fullName": "Katarzyna Wiśniewska", "photo": "images/authors/jan-kowalski.png", "bio": "Krytyk literacki i eseistka", "specialization": "krytyka", "contact": "katarzyna@example.com" },
-    { "id": 5, "name": "T.B.", "fullName": "Tomasz Borowski", "photo": "images/authors/jan-kowalski.png", "bio": "Młody prozaik, laureat nagród literackich", "specialization": "fikcja", "contact": "tomasz@example.com" },
+    { "id": 4, "name": "K.W.", "fullName": "Katarzyna Wiśniewska", "photo": "images/authors/ziomek.jpg", "bio": "Krytyk literacki i eseistka", "specialization": "krytyka", "contact": "katarzyna@example.com" },
+    { "id": 5, "name": "T.B.", "fullName": "Tomasz Borowski", "photo": "images/authors/pudzian.jpg", "bio": "Młody prozaik, laureat nagród literackich", "specialization": "fikcja", "contact": "tomasz@example.com" },
     { "id": 6, "name": "E.K.", "fullName": "Ewa Kowalczyk", "photo": "images/authors/jan-kowalski.png", "bio": "Socjolożka i autorka reportaży społecznych", "specialization": "realia", "contact": "ewa@example.com" },
     { "id": 7, "name": "P.S.", "fullName": "Piotr Szymański", "photo": "images/authors/jan-kowalski.png", "bio": "Poeta underground i performer", "specialization": "poezja", "contact": "piotr@example.com" },
     { "id": 8, "name": "M.D.", "fullName": "Magdalena Dąbrowska", "photo": "images/authors/jan-kowalski.png", "bio": "Redaktor naczelna i kuratorka projektów literackich", "specialization": "redakcja", "contact": "magdalena@example.com" }
