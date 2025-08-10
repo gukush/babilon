@@ -108,15 +108,21 @@ function showMainCategory(category) {
 
 // ---------- article ----------
 async function openArticle(category, idx) {
-  const item = currentIssueMeta?.articles?.[category]?.[idx];
+   const item = currentIssueMeta?.articles?.[category]?.[idx];
   if (!item) return;
 
   $('#article-title').textContent = item.title || '';
 
-  // yellow header matching your mock
   const headerHolder = document.querySelector('#page-article .article-header');
-  headerHolder.innerHTML = `<div class="support-hero" style="margin:10px auto;max-width:820px;">GRAFIKA (DO TEKSTU)</div>`;
-
+  if (item.headerImage) {
+    headerHolder.innerHTML = `
+      <figure style="margin:10px auto;max-width:820px;">
+        <img src="${item.headerImage}" alt="${item.headerAlt || item.title || ''}" loading="lazy" style="width:100%;height:auto;display:block;border-radius:8px;">
+        ${item.headerAlt ? `<figcaption style="font-size:.85rem;color:#555;margin-top:6px;">${item.headerAlt}</figcaption>` : ''}
+      </figure>`;
+  } else {
+    headerHolder.innerHTML = `<div class="support-hero" style="margin:10px auto;max-width:820px;">GRAFIKA (DO TEKSTU)</div>`;
+  }
   // read body from TXT beside meta.json
   let body = '';
   const primary = `content/issues/${currentIssueSlug}/${item.file}`;
@@ -147,8 +153,11 @@ function renderAuthorsPage() {
   (siteIndex.authors || []).forEach(a => {
     const card = document.createElement('div');
     card.className = 'author-card';
+    const inside = a.photo
+      ? `<img class="author-photo" src="${a.photo}" alt="${a.fullName}" loading="lazy">`
+      : `<div class="author-circle">${a.initials || ''}</div>`;
     card.innerHTML = `
-      <div class="author-circle">${a.initials || ''}</div>
+      ${inside}
       <div class="author-name">${a.fullName || ''}</div>
       <div style="font-size:.8rem;color:#666;">Inicjały</div>
     `;
