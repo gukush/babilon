@@ -1,0 +1,379 @@
+{
+  "siteTitle": "Design stron",
+  "logo": "Nazwa Magazynu",
+  "navigation": {
+    "fiction": "Fikcja",
+    "reality": "Realia", 
+    "poetry": "Poezja"
+  },
+  "articles": [
+    {
+      "id": "fiction1",
+      "title": "Zagubiona w czasie",
+      "author": "Jan Kowalski",
+      "category": "fikcja",
+      "content": "Opowiadanie o podróżach w czasie...",
+      "teaserImage": "images/articles/fiction1.jpg",
+      "teaserImage2": "images/articles/fiction1-2.jpg",
+      "mainImage": "images/articles/fiction1-main.jpg",
+      "publishDate": "2024-01-15"
+    },
+    {
+      "id": "fiction2",
+      "title": "Miasto snów",
+      "author": "Anna Nowak",
+      "category": "fikcja", 
+      "content": "Historia o tajemniczym mieście...",
+      "teaserImage": "images/articles/fiction2.jpg",
+      "mainImage": "images/articles/fiction2-main.jpg",
+      "publishDate": "2024-01-20"
+    },
+    {
+      "id": "fiction3",
+      "title": "Ostatnie lato",
+      "author": "Marek Zieliński",
+      "category": "fikcja",
+      "content": "Nowela o ostatnim lecie dzieciństwa...",
+      "teaserImage": "images/articles/fiction3.jpg", 
+      "mainImage": "images/articles/fiction3-main.jpg",
+      "publishDate": "2024-02-01"
+    },
+    {
+      "id": "realia1",
+      "title": "Życie na granicy",
+      "author": "Katarzyna Wiśniewska",
+      "category": "realia",
+      "content": "Reportaż o życiu mieszkańców pogranicza...",
+      "teaserImage": "images/articles/realia1.jpg",
+      "teaserImage2": "images/articles/realia1-2.jpg",
+      "mainImage": "images/articles/realia1-main.jpg",
+      "publishDate": "2024-01-25"
+    },
+    {
+      "id": "realia2", 
+      "title": "Rozmowa z artystą",
+      "author": "Tomasz Borowski",
+      "category": "realia",
+      "content": "Wywiad z wybitnym współczesnym twórcą...",
+      "teaserImage": "images/articles/realia2.jpg",
+      "mainImage": "images/articles/realia2-main.jpg",
+      "publishDate": "2024-02-05"
+    },
+    {
+      "id": "realia3",
+      "title": "Współczesna kultura", 
+      "author": "Ewa Kowalczyk",
+      "category": "realia",
+      "content": "Esej o przemianach kulturowych...",
+      "teaserImage": "images/articles/realia3.jpg",
+      "mainImage": "images/articles/realia3-main.jpg",
+      "publishDate": "2024-02-10"
+    },
+    {
+      "id": "poetry1",
+      "title": "Pory roku",
+      "author": "Piotr Szymański",
+      "category": "poezja",
+      "content": "Cykl wierszy o przemijaniu czasu...",
+      "teaserImage": "images/articles/poetry1.jpg",
+      "teaserImage2": "images/articles/poetry1-2.jpg", 
+      "mainImage": "images/articles/poetry1-main.jpg",
+      "publishDate": "2024-01-30"
+    },
+    {
+      "id": "poetry2",
+      "title": "Miłość miejska",
+      "author": "Magdalena Dąbrowska",
+      "category": "poezja",
+      "content": "Sonety o miłości w wielkim mieście...",
+      "teaserImage": "images/articles/poetry2.jpg",
+      "mainImage": "images/articles/poetry2-main.jpg",
+      "publishDate": "2024-02-08"
+    },
+    {
+      "id": "poetry3",
+      "title": "Droga do domu",
+      "author": "Jan Kowalski", 
+      "category": "poezja",
+      "content": "Poemat o powrocie do korzeni...",
+      "teaserImage": "images/articles/poetry3.jpg",
+      "mainImage": "images/articles/poetry3-main.jpg",
+      "publishDate": "2024-02-12"
+    }
+  ],
+  "archive": {
+    "title": "Archiwum",
+    "issues": [
+      {
+        "number": "Numer I",
+        "title": "Inaugural Issue", 
+        "date": "Styczeń 2024",
+        "link": "archive/issue-1/",
+        "description": "Pierwszy numer magazynu"
+      },
+      {
+        "number": "Numer II",
+        "title": "Spring Edition",
+        "date": "Marzec 2024", 
+        "link": "archive/issue-2/",
+        "description": "Wiosenny numer"
+      },
+      {
+        "number": "Numer III",
+        "title": "Summer Special",
+        "date": "Czerwiec 2024",
+        "link": "archive/issue-3/", 
+        "description": "Letni numer specjalny"
+      }
+    ],
+    "note": "* kliknij aby przejść do wybranego numeru"
+  },
+  "authors": [
+    {
+      "id": 1,
+      "name": "J.K.",
+      "fullName": "Jan Kowalski",
+      "photo": "images/authors/jan-kowalski.jpg",
+      "bio": "Pisarz i dziennikarz z 20-letnim doświadczeniem",
+      "specialization": "fikcja",
+      "contact": "jan@example.com"
+    },
+    {
+      "id": 2,
+      "name": "A.N.",
+      "fullName": "Anna Nowak", 
+      "photo": "images/authors/anna-nowak.jpg",
+      "bio": "Poetka i tłumaczka literatury współczesnej",
+      "specialization": "poezja",
+      "contact": "anna@example.com"
+    },
+    {
+      "id": 3,
+      "name": "M.Z.",
+      "fullName": "Marek Zieliński",
+      "photo": "images/authors/marek-zielinski.jpg", 
+      "bio": "Reporter i fotograf dokumentalny",
+      "specialization": "realia",
+      "contact": "marek@example.com"
+    },
+    {
+      "id": 4,
+      "name": "K.W.",
+      "fullName": "Katarzyna Wiśniewska",
+      "photo": "images/authors/katarzyna-wisniewska.jpg",
+      "bio": "Krytyk literacki i eseistka", 
+      "specialization": "krytyka",
+      "contact": "katarzyna@example.com"
+    },
+    {
+      "id": 5,
+      "name": "T.B.",
+      "fullName": "Tomasz Borowski",
+      "photo": "images/authors/tomasz-borowski.jpg",
+      "bio": "Młody prozaik, laureat nagród literackich",
+      "specialization": "fikcja", 
+      "contact": "tomasz@example.com"
+    },
+    {
+      "id": 6,
+      "name": "E.K.",
+      "fullName": "Ewa Kowalczyk",
+      "photo": "images/authors/ewa-kowalczyk.jpg",
+      "bio": "Socjolożka i autorka reportaży społecznych",
+      "specialization": "realia",
+      "contact": "ewa@example.com"
+    },
+    {
+      "id": 7,
+      "name": "P.S.",
+      "fullName": "Piotr Szymański", 
+      "photo": "images/authors/piotr-szymanski.jpg",
+      "bio": "Poeta underground i performer",
+      "specialization": "poezja",
+      "contact": "piotr@example.com"
+    },
+    {
+      "id": 8,
+      "name": "M.D.",
+      "fullName": "Magdalena Dąbrowska",
+      "photo": "images/authors/magdalena-dabrowska.jpg",
+      "bio": "Redaktor naczelna i kuratorka projektów literackich",
+      "specialization": "redakcja",
+      "contact": "magdalena@example.com"
+    }
+  ],
+  "support": {
+    "title": "Wsparzyj nas",
+    "description": "Pomóż nam tworzyć wysokiej jakości treści kulturalne",
+    "buttonText": "WSPIERAJ NAS",
+    "paypalLink": "https://paypal.me/yourmagazine",
+    "bankAccount": "12 3456 7890 1234 5678 9012 3456",
+    "additionalInfo": "Każde wsparcie pomaga nam rozwijać niezależną kulturę",
+    "goals": [
+      "Opłacenie autorów",
+      "Koszty serwera i domeny", 
+      "Promocja w social media",
+      "Druk specjalnych wydań"
+    ]
+  },
+  "contact": {
+    "email": "redakcja@magazine.pl",
+    "phone": "+48 123 456 789", 
+    "address": "ul. Literacka 1, 00-000 Warszawa",
+    "socialMedia": {
+      "facebook": "https://facebook.com/yourmagazine",
+      "instagram": "https://instagram.com/yourmagazine", 
+      "twitter": "https://twitter.com/yourmagazine"
+    }
+  },
+  "settings": {
+    "language": "pl",
+    "timezone": "Europe/Warsaw",
+    "dateFormat": "DD.MM.YYYY",
+    "articlesPerPage": 3,
+    "enableComments": false,
+    "enableNewsletter": true
+  },
+  "imageSettings": {
+    "teaserImageSize": "400x200",
+    "mainImageSize": "600x300", 
+    "authorPhotoSize": "150x150",
+    "maxFileSize": "500KB",
+    "supportedFormats": ["jpg", "jpeg", "png"],
+    "imageBasePath": "images/"
+  }
+}
+  "archive": {
+    "title": "Archiwum",
+    "issues": [
+      {
+        "number": "Numer I",
+        "title": "Inaugural Issue", 
+        "date": "Styczeń 2024",
+        "link": "archive/issue-1/",
+        "description": "Pierwszy numer magazynu"
+      },
+      {
+        "number": "Numer II",
+        "title": "Spring Edition",
+        "date": "Marzec 2024", 
+        "link": "archive/issue-2/",
+        "description": "Wiosenny numer"
+      },
+      {
+        "number": "Numer III",
+        "title": "Summer Special",
+        "date": "Czerwiec 2024",
+        "link": "archive/issue-3/", 
+        "description": "Letni numer specjalny"
+      }
+    ],
+    "note": "* kliknij aby przejść do wybranego numeru"
+  },
+  "authors": [
+    {
+      "id": 1,
+      "name": "J.K.",
+      "fullName": "Jan Kowalski",
+      "photo": "images/authors/jan-kowalski.jpg",
+      "bio": "Pisarz i dziennikarz z 20-letnim doświadczeniem",
+      "specialization": "fikcja",
+      "contact": "jan@example.com"
+    },
+    {
+      "id": 2,
+      "name": "A.N.",
+      "fullName": "Anna Nowak", 
+      "photo": "images/authors/anna-nowak.jpg",
+      "bio": "Poetka i tłumaczka literatury współczesnej",
+      "specialization": "poezja",
+      "contact": "anna@example.com"
+    },
+    {
+      "id": 3,
+      "name": "M.Z.",
+      "fullName": "Marek Zieliński",
+      "photo": "images/authors/marek-zielinski.jpg", 
+      "bio": "Reporter i fotograf dokumentalny",
+      "specialization": "realia",
+      "contact": "marek@example.com"
+    },
+    {
+      "id": 4,
+      "name": "K.W.",
+      "fullName": "Katarzyna Wiśniewska",
+      "photo": "images/authors/katarzyna-wisniewska.jpg",
+      "bio": "Krytyk literacki i eseistka", 
+      "specialization": "krytyka",
+      "contact": "katarzyna@example.com"
+    },
+    {
+      "id": 5,
+      "name": "T.B.",
+      "fullName": "Tomasz Borowski",
+      "photo": "images/authors/tomasz-borowski.jpg",
+      "bio": "Młody prozaik, laureat nagród literackich",
+      "specialization": "fikcja", 
+      "contact": "tomasz@example.com"
+    },
+    {
+      "id": 6,
+      "name": "E.K.",
+      "fullName": "Ewa Kowalczyk",
+      "photo": "images/authors/ewa-kowalczyk.jpg",
+      "bio": "Socjolożka i autorka reportaży społecznych",
+      "specialization": "realia",
+      "contact": "ewa@example.com"
+    },
+    {
+      "id": 7,
+      "name": "P.S.",
+      "fullName": "Piotr Szymański", 
+      "photo": "images/authors/piotr-szymanski.jpg",
+      "bio": "Poeta underground i performer",
+      "specialization": "poezja",
+      "contact": "piotr@example.com"
+    },
+    {
+      "id": 8,
+      "name": "M.D.",
+      "fullName": "Magdalena Dąbrowska",
+      "photo": "images/authors/magdalena-dabrowska.jpg",
+      "bio": "Redaktor naczelna i kuratorka projektów literackich",
+      "specialization": "redakcja",
+      "contact": "magdalena@example.com"
+    }
+  ],
+  "support": {
+    "title": "Wsparzyj nas",
+    "description": "Pomóż nam tworzyć wysokiej jakości treści kulturalne",
+    "buttonText": "WSPIERAJ NAS",
+    "paypalLink": "https://paypal.me/yourmagazine",
+    "bankAccount": "12 3456 7890 1234 5678 9012 3456",
+    "additionalInfo": "Każde wsparcie pomaga nam rozwijać niezależną kulturę",
+    "goals": [
+      "Opłacenie autorów",
+      "Koszty serwera i domeny", 
+      "Promocja w social media",
+      "Druk specjalnych wydań"
+    ]
+  },
+  "contact": {
+    "email": "redakcja@magazine.pl",
+    "phone": "+48 123 456 789", 
+    "address": "ul. Literacka 1, 00-000 Warszawa",
+    "socialMedia": {
+      "facebook": "https://facebook.com/yourmagazine",
+      "instagram": "https://instagram.com/yourmagazine", 
+      "twitter": "https://twitter.com/yourmagazine"
+    }
+  },
+  "settings": {
+    "language": "pl",
+    "timezone": "Europe/Warsaw",
+    "dateFormat": "DD.MM.YYYY",
+    "articlesPerPage": 3,
+    "enableComments": false,
+    "enableNewsletter": true
+  }
+}
