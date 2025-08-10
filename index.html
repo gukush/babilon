@@ -1,1115 +1,161 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design stron - Magazyn</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magazyn – Strona główna</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5dc;
-            color: #333;
-        }
+  <!-- Your existing styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="classic-look.css">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  <!-- Small layout overrides -->
+  <style>
+    .header { text-align:center; border-bottom: 2px solid #87ceeb; padding: 24px 0; }
+    .logo { background:#87ceeb; color:#fff; border:0; border-radius:14px; cursor:pointer; }
+    .logo.logo-big { display:inline-block; width:min(420px, 82vw); height:130px; font-size:2rem; font-weight:700; }
+    .logo.logo-big span { display:block; line-height:130px; }
+    .logo:hover { background:#4682b4; }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
+    .main-issue-header { text-align:center; margin: 20px auto; background:#fff; border:2px solid #87ceeb; border-radius:12px; padding:18px; max-width:900px; }
+    .main-issue-title { font-size:2rem; color:#87ceeb; font-weight:800; }
+    .main-issue-subtitle { color:#666; font-style:italic; margin-top:6px; }
+    .main-issue-date { color:#999; margin-top:6px; }
 
-        .logo {
-            background-color: #87ceeb;
-            color: white;
-            padding: 25px 40px;
-            text-align: center;
-            font-size: 2em;
-            font-weight: bold;
-            margin: 20px auto;
-            max-width: 300px;
-            cursor: pointer;
-            border: none;
-            display: block;
-        }
+    /* Vertical stack for categories */
+    .category-chooser { display:flex; flex-direction:column; gap:12px; align-items:center; margin:18px auto; max-width:520px; }
+    .category-chooser button { width:100%; background:#87ceeb; color:#fff; border:0; padding:14px 18px; border-radius:8px; font-weight:700; cursor:pointer; }
+    .category-chooser button:hover { background:#4682b4; }
 
-        .logo:hover {
-            background-color: #4682b4;
-        }
+    /* Category list (separate page) */
+    .teaser-container { display:flex; gap:12px; align-items:center; padding:10px; border-radius:6px; cursor:pointer; }
+    .teaser-container:hover { background:#eee3bf; }
+    .teaser-label { min-width:110px; min-height:70px; background:#daa520; display:flex; align-items:center; justify-content:center; color:#000; background-size:cover; background-position:center; }
+    .teaser-text { flex:1; background:#fff; border:1px solid #ddd; padding:8px; font-weight:bold; }
 
-        /* Bottom navigation */
-        .bottom-nav {
-            display: flex;
-            gap: 0;
-            margin-top: 30px;
-        }
+    /* Archive slideshow page */
+    .archive-slideshow { position:relative; max-width:640px; margin:10px auto 20px; border:2px solid #87ceeb; border-radius:10px; overflow:hidden; background:#fff; }
+    .slideshow-container { position:relative; height:420px; }
+    .slide { position:absolute; inset:0; padding:20px; text-align:center; background:#fff; display:none; }
+    .slide.active { display:block; }
+    .slide-image { width:200px; height:280px; margin:0 auto 12px; border:2px solid #333; background:#daa520; display:flex; align-items:center; justify-content:center; background-size:cover; background-position:center; cursor:pointer; }
+    .nav-arrow { position:absolute; top:50%; transform:translateY(-50%); background:#87ceeb; color:#fff; border:0; padding:10px 14px; font-size:20px; font-weight:bold; cursor:pointer; }
+    .nav-arrow.prev { left:10px } .nav-arrow.next { right:10px }
+    .slide-indicators { text-align:center; background:#f0f0f0; padding:10px; }
+    .indicator { display:inline-block; width:12px; height:12px; background:#ccc; border-radius:50%; margin:0 4px; cursor:pointer; }
+    .indicator.active { background:#87ceeb; }
 
-        .bottom-nav-item {
-            background-color: #87ceeb;
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            flex: 1;
-            text-align: center;
-            border-right: 1px solid #4682b4;
-            cursor: pointer;
-        }
+    .content-section { background:#f5f5dc; padding:20px; margin:20px 0; border:1px solid #ddd; }
+    .section-header { background:#87ceeb; color:#fff; padding:12px 16px; font-weight:bold; text-align:center; margin-bottom:16px; }
 
-        .bottom-nav-item:last-child {
-            border-right: none;
-        }
+    .article-body { background:#daa520; color:#000; padding:24px; }
+    .bottom-nav { display:flex; }
+    .bottom-nav-item { flex:1; background:#87ceeb; color:#fff; padding:12px 16px; text-align:center; border-right:1px solid #4682b4; cursor:pointer; font-weight:700; }
+    .bottom-nav-item:last-child { border-right:none; }
 
-        .bottom-nav-item:hover {
-            background-color: #4682b4;
-        }
+    /* Page visibility helper (if your styles.css doesn’t already provide) */
+    .page { display:none; }
+    .page.active { display:block; }
 
-        /* Page content area */
-        .page-content {
-            min-height: 400px;
-            padding: 20px 0;
-        }
+/* Authors grid & support page */
+.authors-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap:16px; max-width:820px; margin:0 auto; }
+.author-card { text-align:center; }
+.author-circle { width:86px; height:86px; border-radius:50%; background:#7ccf7c; display:flex; align-items:center; justify-content:center; margin:0 auto 8px; font-weight:700; }
+.author-name { font-size:.9rem; color:#333; }
+.support-hero { background:#f0c542; color:#000; text-align:center; padding:20px; border-radius:8px; font-weight:800; margin:10px auto; max-width:820px; }
+.support-copy { max-width:820px; margin:12px auto 0; background:#fff; border:1px solid #ddd; padding:12px; }
+.support-button { display:inline-block; background:#87ceeb; color:#fff; font-weight:800; padding:12px 16px; border-radius:10px; text-decoration:none; }
+.support-button:hover { background:#4682b4; }
 
-        /* Header styles */
-        .header {
-            background-color: #f5f5dc;
-            padding: 20px 0;
-            border-bottom: 2px solid #87ceeb;
-            text-align: center;
-        }
-        /* Content sections */
-        .content-section {
-            background-color: #f5f5dc;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-        }
-
-        .section-header {
-            background-color: #87ceeb;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .teaser-label {
-            background-color: #daa520;
-            color: black;
-            padding: 8px 12px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            background-size: cover;
-            background-position: center;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .teaser-container {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .teaser-container:hover {
-            background-color: #ebe5d0;
-        }
-
-        .teaser-label {
-            background-color: #daa520;
-            color: black;
-            padding: 8px 12px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            background-size: cover;
-            background-position: center;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .teaser-label img {
-            max-width: 100%;
-            max-height: 50px;
-            object-fit: cover;
-        }
-
-        /* Main category buttons */
-        .main-categories {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .main-category-btn {
-            background-color: #87ceeb;
-            color: white;
-            border: none;
-            padding: 30px;
-            font-size: 1.8em;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .main-category-btn:hover {
-            background-color: #4682b4;
-        }
-
-        .category-title {
-            text-align: center;
-        }
-
-        .teaser-text {
-            flex: 1;
-            padding: 8px;
-            background-color: white;
-            border: 1px solid #ddd;
-            font-weight: bold;
-        }
-
-        /* Article text page */
-        .article-header {
-            background-color: #87ceeb;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-            max-width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .article-content {
-            background-color: #daa520;
-            padding: 30px;
-            text-align: center;
-            font-size: 4em;
-            font-weight: bold;
-            color: black;
-            margin: 20px 0;
-        }
-
-        /* Archive issue styles */
-        .archive-issue-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: white;
-            border: 2px solid #87ceeb;
-            border-radius: 10px;
-        }
-
-        .archive-issue-title {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #87ceeb;
-            margin-bottom: 10px;
-        }
-
-        .archive-issue-subtitle {
-            font-size: 1.3em;
-            color: #666;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .archive-issue-date {
-            font-size: 1em;
-            color: #999;
-            margin-bottom: 20px;
-        }
-
-        .back-to-archive-btn {
-            background-color: #87ceeb;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            margin: 20px auto;
-            display: block;
-        }
-
-        .back-to-archive-btn:hover {
-            background-color: #4682b4;
-        }
-        .archive-slideshow {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 20px;
-            background-color: white;
-            border: 2px solid #87ceeb;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-        }
-
-        .slide {
-            display: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-        }
-
-        .slide.active {
-            display: block;
-        }
-
-        .slide-image {
-            width: 200px;
-            height: 280px;
-            background-color: #daa520;
-            margin: 0 auto 15px;
-            border: 2px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: black;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .slide-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .slide-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .slide-description {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .slide-date {
-            font-size: 0.9em;
-            color: #999;
-        }
-
-        /* Navigation arrows */
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #87ceeb;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .nav-arrow:hover {
-            background-color: #4682b4;
-        }
-
-        .nav-arrow.prev {
-            left: 20px;
-        }
-
-        .nav-arrow.next {
-            right: 20px;
-        }
-
-        /* Slide indicators */
-        .slide-indicators {
-            text-align: center;
-            padding: 15px;
-            background-color: #f0f0f0;
-        }
-
-        .indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ccc;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .indicator.active {
-            background-color: #87ceeb;
-        }
-
-        .indicator:hover {
-            background-color: #4682b4;
-        }
-
-        /* Authors page */
-        .authors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .author-item {
-            text-align: center;
-        }
-
-        .author-photo {
-            width: 80px;
-            height: 80px;
-            background-color: #90ee90;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: black;
-            font-weight: bold;
-        }
-
-        .author-name {
-            font-size: 0.9em;
-            color: black;
-        }
-
-        /* Support page */
-        .support-content {
-            background-color: #daa520;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .support-button {
-            background-color: #87ceeb;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .support-button:hover {
-            background-color: #4682b4;
-        }
-
-        /* Hidden pages */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .bottom-nav {
-                flex-direction: column;
-            }
-            
-            .article-content {
-                font-size: 2em;
-                padding: 15px;
-            }
-            
-            .main-categories {
-                max-width: 100%;
-            }
-            
-            .logo {
-                font-size: 1.5em;
-                padding: 20px 30px;
-            }
-            
-            .archive-slideshow {
-                max-width: 100%;
-            }
-            
-            .slideshow-container {
-                height: 350px;
-            }
-            
-            .slide-image {
-                width: 150px;
-                height: 210px;
-            }
-            
-            .nav-arrow {
-                padding: 10px 15px;
-                font-size: 1.2em;
-            }
-            
-            .nav-arrow.prev {
-                left: 10px;
-            }
-            
-            .nav-arrow.next {
-                right: 10px;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <button class="logo" onclick="showPage('home')">Logo</button>
-        </header>
+  <div class="container">
+    <!-- Big centered logo; clicking it always returns to MAIN -->
+    <header class="header">
+      <button class="logo logo-big" onclick="showPage('page-main')">
+        <span>LOGO (miejsce na obraz)</span>
+      </button>
+    </header>
 
-        <!-- Strona główna -->
-        <div id="home" class="page active">
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="main-categories">
-                        <button class="main-category-btn" onclick="showPage('fikcja')">
-                            <div class="category-title">Fikcja</div>
-                        </button>
-                        <button class="main-category-btn" onclick="showPage('realia')">
-                            <div class="category-title">Realia</div>
-                        </button>
-                        <button class="main-category-btn" onclick="showPage('poezja')">
-                            <div class="category-title">Poezja</div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- MAIN (always the latest issue) -->
+    <section id="page-main" class="page active">
+      <div class="main-issue-header">
+        <div id="main-issue-title" class="main-issue-title">Najnowszy numer</div>
+        <div id="main-issue-subtitle" class="main-issue-subtitle"></div>
+        <div id="main-issue-date" class="main-issue-date"></div>
+      </div>
 
-        <!-- Strona Fikcja -->
-        <div id="fikcja" class="page">
-            <!-- <button class="logo" onclick="showPage('home')">Logo</button> -->
-            <h1>Fikcja</h1>
-            
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">FIKCJA</div>
-                    
-                    <div class="teaser-container" onclick="showArticle('fiction1')">
-                        <div class="teaser-label" data-image="images/articles/fiction1.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Opowiadanie I - "Zagubiona w czasie"</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('fiction2')">
-                        <div class="teaser-text">Opowiadanie II - "Miasto snów"</div>
-                        <div class="teaser-label" data-image="images/articles/fiction2.jpg">GRAFIKA (DO TEKSTU)</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('fiction3')">
-                        <div class="teaser-label" data-image="images/articles/fiction3.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Nowela - "Ostatnie lato"</div>
-                    </div>
-                </div>
-            </div>
+      <div class="content-section">
+        <div class="section-header">WYBIERZ DZIAŁ</div>
+        <div class="category-chooser">
+          <button onclick="showMainCategory('fikcja')">Fikcja</button>
+          <button onclick="showMainCategory('realia')">Realia</button>
+          <button onclick="showMainCategory('poezja')">Poezja</button>
         </div>
+      </div>
+    </section>
 
-        <!-- Strona Realia -->
-        <div id="realia" class="page">
-            <!-- <button class="logo" onclick="showPage('home')">Logo</button> -->
-            <h1>Realia</h1>
-            
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">REALIA</div>
-                    
-                    <div class="teaser-container" onclick="showArticle('realia1')">
-                        <div class="teaser-label" data-image="images/articles/realia1.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Reportaż I - "Życie na granicy"</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('realia2')">
-                        <div class="teaser-text">Wywiad - "Rozmowa z artystą"</div>
-                        <div class="teaser-label" data-image="images/articles/realia2.jpg">GRAFIKA (DO TEKSTU)</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('realia3')">
-                        <div class="teaser-label" data-image="images/articles/realia3.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Esej - "Współczesna kultura"</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- CATEGORY PAGE (for selected category of current issue) -->
+    <section id="page-category" class="page" aria-hidden="true">
+      <div class="content-section">
+        <div class="section-header" id="category-header">Kategoria</div>
+        <div id="category-list"></div>
+      </div>
+    </section>
 
-        <!-- Strona Poezja -->
-        <div id="poezja" class="page">
-            <!-- <button class="logo" onclick="showPage('home')">Logo</button> -->
-            <h1>Poezja</h1>
-            
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">POEZJA</div>
-                    
-                    <div class="teaser-container" onclick="showArticle('poetry1')">
-                        <div class="teaser-label" data-image="images/articles/poetry1.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Cykl wierszy - "Pory roku"</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('poetry2')">
-                        <div class="teaser-text">Sonety - "Miłość miejska"</div>
-                        <div class="teaser-label" data-image="images/articles/poetry2.jpg">GRAFIKA (DO TEKSTU)</div>
-                    </div>
-                    
-                    <div class="teaser-container" onclick="showArticle('poetry3')">
-                        <div class="teaser-label" data-image="images/articles/poetry3.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">Poemat - "Droga do domu"</div>
-                    </div>
-                </div>
-            </div>
+    <!-- ARCHIWUM PAGE (separate page now) -->
+    <section id="page-archive" class="page" aria-hidden="true">
+      <div class="content-section">
+        <div class="section-header">ARCHIWUM</div>
+        <div class="archive-slideshow">
+          <div class="slideshow-container" id="slideshow"></div>
+          <button class="nav-arrow prev" onclick="changeSlide(-1)">‹</button>
+          <button class="nav-arrow next" onclick="changeSlide(1)">›</button>
+          <div class="slide-indicators" id="slide-dots"></div>
         </div>
+      </div>
 
-        <!-- Szablon strony tekstu - będzie powielany dla każdego artykułu -->
-        <div id="article-template" class="page">
-            <button class="logo" onclick="showPage('home')">Logo</button>
-            <div class="article-header" id="article-title">NAGŁÓWEK</div>
-            <div class="article-content" id="article-text">TEKST</div>
-        </div>
+<!-- AUTHORS PAGE -->
+<section id="page-authors" class="page" aria-hidden="true">
+  <div class="content-section">
+    <button class="logo" style="display:block; margin:12px auto; cursor:default">Twórcy</button>
+    <div id="authors-grid" class="authors-grid"></div>
+  </div>
+</section>
 
-        <!-- Strona archiwum -->
-        <div id="archive" class="page">
-            <div class="article-header">Archiwum</div>
-            
-            <div class="archive-slideshow">
-                <div class="slideshow-container">
-                    <!-- Slide 1 -->
-                    <div class="slide active">
-                        <div class="slide-image" data-image="images/archive/issue-1-cover.jpg" onclick="openArchiveIssue('issue-1')">
-                            OKŁADKA<br>NUMER I
-                        </div>
-                        <div class="slide-title">Numer I - Inaugural Issue</div>
-                        <div class="slide-description">Pierwszy numer magazynu</div>
-                        <div class="slide-date">Styczeń 2024</div>
-                    </div>
-                    
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <div class="slide-image" data-image="images/archive/issue-2-cover.jpg" onclick="openArchiveIssue('issue-2')">
-                            OKŁADKA<br>NUMER II
-                        </div>
-                        <div class="slide-title">Numer II - Spring Edition</div>
-                        <div class="slide-description">Wiosenny numer</div>
-                        <div class="slide-date">Marzec 2024</div>
-                    </div>
-                    
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                        <div class="slide-image" data-image="images/archive/issue-3-cover.jpg" onclick="openArchiveIssue('issue-3')">
-                            OKŁADKA<br>NUMER III
-                        </div>
-                        <div class="slide-title">Numer III - Summer Special</div>
-                        <div class="slide-description">Letni numer specjalny</div>
-                        <div class="slide-date">Czerwiec 2024</div>
-                    </div>
-                </div>
-                
-                <!-- Navigation arrows -->
-                <button class="nav-arrow prev" onclick="changeSlide(-1)">‹</button>
-                <button class="nav-arrow next" onclick="changeSlide(1)">›</button>
-                
-                <!-- Slide indicators -->
-                <div class="slide-indicators">
-                    <span class="indicator active" onclick="currentSlide(1)"></span>
-                    <span class="indicator" onclick="currentSlide(2)"></span>
-                    <span class="indicator" onclick="currentSlide(3)"></span>
-                </div>
-            </div>
-            
-            <div style="text-align: center; font-size: 0.9em; color: #666; margin-top: 20px;">
-                * kliknij strzałki aby przeglądać numery
-            </div>
-        </div>
-
-        <!-- Archive Issue Main Page Template -->
-        <div id="archive-issue-main" class="page">
-            <div class="page-content">
-                <div class="archive-issue-header">
-                    <div id="archive-issue-title" class="archive-issue-title">NUMER</div>
-                    <div id="archive-issue-subtitle" class="archive-issue-subtitle">Subtitle</div>
-                    <div id="archive-issue-date" class="archive-issue-date">Data</div>
-                    <button class="back-to-archive-btn" onclick="showPage('archive')">← Powrót do Archiwum</button>
-                </div>
-                
-                <div class="content-section">
-                    <div class="main-categories">
-                        <button class="main-category-btn" onclick="showArchiveCategory('fikcja')">
-                            <div class="category-title">Fikcja</div>
-                        </button>
-                        <button class="main-category-btn" onclick="showArchiveCategory('realia')">
-                            <div class="category-title">Realia</div>
-                        </button>
-                        <button class="main-category-btn" onclick="showArchiveCategory('poezja')">
-                            <div class="category-title">Poezja</div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Archive Category Pages -->
-        <div id="archive-fikcja" class="page">
-            <div class="article-header">Fikcja</div>
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">FIKCJA</div>
-                    <div id="archive-fikcja-content">
-                        <!-- Content will be populated dynamically -->
-                    </div>
-                </div>
-            </div>
-            <button class="back-to-archive-btn" onclick="showPage('archive-issue-main')">← Powrót do Numeru</button>
-        </div>
-
-        <div id="archive-realia" class="page">
-            <div class="article-header">Realia</div>
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">REALIA</div>
-                    <div id="archive-realia-content">
-                        <!-- Content will be populated dynamically -->
-                    </div>
-                </div>
-            </div>
-            <button class="back-to-archive-btn" onclick="showPage('archive-issue-main')">← Powrót do Numeru</button>
-        </div>
-
-        <div id="archive-poezja" class="page">
-            <div class="article-header">Poezja</div>
-            <div class="page-content">
-                <div class="content-section">
-                    <div class="section-header">POEZJA</div>
-                    <div id="archive-poezja-content">
-                        <!-- Content will be populated dynamically -->
-                    </div>
-                </div>
-            </div>
-            <button class="back-to-archive-btn" onclick="showPage('archive-issue-main')">← Powrót do Numeru</button>
-        </div>
-        <div id="authors" class="page">
-            <div class="article-header">Twórcy</div>
-            
-            <div class="authors-grid">
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-                <div class="author-item">
-                    <div class="author-photo">Zdjęcie</div>
-                    <div class="author-name">Inicjały</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Strona Wesprzyj -->
-        <div id="support" class="page">
-            <div class="article-header">Wesprzyj</div>
-            
-            <div class="support-content">
-                <div class="teaser-label" style="margin-bottom: 20px;">GRAFIKA</div>
-                <div style="font-size: 1.2em; margin-bottom: 10px;">Przycisk do</div>
-                <div style="font-size: 1.2em;">paypa;a</div>
-                <button class="support-button">WSPIERAJ NAS</button>
-            </div>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <div class="bottom-nav-item" onclick="showPage('archive')">Archiwum</div>
-            <div class="bottom-nav-item" onclick="showPage('authors')">Twórcy</div>
-            <div class="bottom-nav-item" onclick="showPage('support')">Wesprzyj</div>
-        </nav>
+<!-- SUPPORT PAGE -->
+<section id="page-support" class="page" aria-hidden="true">
+  <div class="content-section">
+    <button class="logo" style="display:block; margin:12px auto; cursor:default">Wsparcie</button>
+    <div class="support-hero">GRAFIKA</div>
+    <div id="support-copy" class="support-copy"></div>
+    <div style="text-align:center; margin-top:14px;">
+      <a id="support-button" class="support-button" href="#" target="_blank" rel="noopener">Przycisk do papała</a>
     </div>
+  </div>
+</section>
 
-    <script>
-        // Archive issues database
-        const archiveIssues = {
-            'issue-1': {
-                title: 'Numer I - Inaugural Issue',
-                subtitle: 'Pierwszy numer magazynu',
-                date: 'Styczeń 2024',
-                coverImage: 'images/archive/issue-1-cover.jpg',
-                articles: {
-                    fikcja: [
-                        {id: 'archive1-fiction1', title: 'Pierwszy krok', content: 'Opowiadanie o początkach...'},
-                        {id: 'archive1-fiction2', title: 'Zima w mieście', content: 'Historia o zimowej nocy...'},
-                        {id: 'archive1-fiction3', title: 'List do przyszłości', content: 'Futurystyczna nowela...'}
-                    ],
-                    realia: [
-                        {id: 'archive1-realia1', title: 'Startup w Polsce', content: 'Reportaż o młodych przedsiębiorcach...'},
-                        {id: 'archive1-realia2', title: 'Wywiad z pisarzem', content: 'Rozmowa z debiutantem...'},
-                        {id: 'archive1-realia3', title: 'Kultura w pandemii', content: 'Esej o przemianach...'}
-                    ],
-                    poezja: [
-                        {id: 'archive1-poetry1', title: 'Wiersze o domu', content: 'Cykl o nostalgii...'},
-                        {id: 'archive1-poetry2', title: 'Haiku miejskie', content: 'Krótkie formy poetyckie...'},
-                        {id: 'archive1-poetry3', title: 'Ballada o czasie', content: 'Długi poemat...'}
-                    ]
-                }
-            },
-            'issue-2': {
-                title: 'Numer II - Spring Edition',
-                subtitle: 'Wiosenny numer pełen nadziei',
-                date: 'Marzec 2024',
-                coverImage: 'images/archive/issue-2-cover.jpg',
-                articles: {
-                    fikcja: [
-                        {id: 'archive2-fiction1', title: 'Ogród wspomnień', content: 'Opowiadanie o powrocie...'},
-                        {id: 'archive2-fiction2', title: 'Dziwny sen', content: 'Surrealistyczna historia...'},
-                        {id: 'archive2-fiction3', title: 'Podróż na wschód', content: 'Przygodowa nowela...'}
-                    ],
-                    realia: [
-                        {id: 'archive2-realia1', title: 'Ekolodzy w akcji', content: 'Reportaż o aktywistach...'},
-                        {id: 'archive2-realia2', title: 'Teatr po lockdownie', content: 'Rozmowy z aktorami...'},
-                        {id: 'archive2-realia3', title: 'Nowa architektura', content: 'Esej o przestrzeni miejskiej...'}
-                    ],
-                    poezja: [
-                        {id: 'archive2-poetry1', title: 'Sonety wiosenne', content: 'Cykl o odrodzeniu...'},
-                        {id: 'archive2-poetry2', title: 'Wiersze miłosne', content: 'Liryka osobista...'},
-                        {id: 'archive2-poetry3', title: 'Oda do natury', content: 'Długi poemat ekologiczny...'}
-                    ]
-                }
-            },
-            'issue-3': {
-                title: 'Numer III - Summer Special',
-                subtitle: 'Letni numer specjalny o podróżach',
-                date: 'Czerwiec 2024',
-                coverImage: 'images/archive/issue-3-cover.jpg',
-                articles: {
-                    fikcja: [
-                        {id: 'archive3-fiction1', title: 'Wyspa tajemnic', content: 'Opowiadanie o tropikalnej wyspie...'},
-                        {id: 'archive3-fiction2', title: 'Nocny pociąg', content: 'Historia podróży przez Europę...'},
-                        {id: 'archive3-fiction3', title: 'Letnie miłości', content: 'Nowela o wakacyjnym romansie...'}
-                    ],
-                    realia: [
-                        {id: 'archive3-realia1', title: 'Nomadzi cyfrowi', content: 'Reportaż o pracy zdalnej...'},
-                        {id: 'archive3-realia2', title: 'Festiwale po COVID', content: 'Rozmowy z organizatorami...'},
-                        {id: 'archive3-realia3', title: 'Turystyka przyszłości', content: 'Esej o zrównoważonym podróżowaniu...'}
-                    ],
-                    poezja: [
-                        {id: 'archive3-poetry1', title: 'Wiersze z plaży', content: 'Cykl o morzu i słońcu...'},
-                        {id: 'archive3-poetry2', title: 'Drogowe ballady', content: 'Liryka podróżnicza...'},
-                        {id: 'archive3-poetry3', title: 'Poemat o wolności', content: 'Długi tekst o niezależności...'}
-                    ]
-                }
-            }
-        };
+</section>
 
-        // Current archive issue
-        let currentArchiveIssue = null;
-        const articles = {
-            'fiction1': {
-                title: 'Zagubiona w czasie',
-                content: 'Opowiadanie o podróżach w czasie...'
-            },
-            'fiction2': {
-                title: 'Miasto snów',
-                content: 'Historia o tajemniczym mieście...'
-            },
-            'fiction3': {
-                title: 'Ostatnie lato',
-                content: 'Nowela o ostatnim lecie dzieciństwa...'
-            },
-            'realia1': {
-                title: 'Życie na granicy',
-                content: 'Reportaż o życiu mieszkańców pogranicza...'
-            },
-            'realia2': {
-                title: 'Rozmowa z artystą',
-                content: 'Wywiad z wybitnym współczesnym twórcą...'
-            },
-            'realia3': {
-                title: 'Współczesna kultura',
-                content: 'Esej o przemianach kulturowych...'
-            },
-            'poetry1': {
-                title: 'Pory roku',
-                content: 'Cykl wierszy o przemijaniu czasu...'
-            },
-            'poetry2': {
-                title: 'Miłość miejska',
-                content: 'Sonety o miłości w wielkim mieście...'
-            },
-            'poetry3': {
-                title: 'Droga do domu',
-                content: 'Poemat o powrocie do korzeni...'
-            }
-        };
+    <!-- ARTICLE PAGE -->
+    <section id="page-article" class="page" aria-hidden="true">
+    <button class="logo" onclick="backToPrevious()">Logo</button>
+    <div class="content-section">
+        <div class="section-header" id="article-title"></div>
+        <div class="article-header"></div> <!-- Placeholder for teaser image -->
+        <div id="article-body" class="article-body"></div>
+    </div>
+    </section>
 
-        // Archive navigation functions
-        function openArchiveIssue(issueId) {
-            const issue = archiveIssues[issueId];
-            if (issue) {
-                currentArchiveIssue = issueId;
-                
-                // Update issue main page content
-                document.getElementById('archive-issue-title').textContent = issue.title;
-                document.getElementById('archive-issue-subtitle').textContent = issue.subtitle;
-                document.getElementById('archive-issue-date').textContent = issue.date;
-                
-                // Show issue main page
-                showPage('archive-issue-main');
-            }
-        }
+    <!-- Bottom navigation -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-item" onclick="showPage('page-archive')">Archiwum</div>
+      <div class="bottom-nav-item" onclick="showPage('page-authors')">Twórcy</div>
+      <div class="bottom-nav-item" onclick="showPage('page-support')">Wsparcie</div>
+    </nav>
+  </div>
 
-        function showArchiveCategory(category) {
-            if (!currentArchiveIssue) return;
-            
-            const issue = archiveIssues[currentArchiveIssue];
-            const articles = issue.articles[category];
-            
-            if (articles) {
-                // Clear previous content
-                const contentDiv = document.getElementById(`archive-${category}-content`);
-                contentDiv.innerHTML = '';
-                
-                // Add articles for this category
-                articles.forEach(article => {
-                    const teaserDiv = document.createElement('div');
-                    teaserDiv.className = 'teaser-container';
-                    teaserDiv.onclick = () => showArchiveArticle(article.id);
-                    
-                    teaserDiv.innerHTML = `
-                        <div class="teaser-label" data-image="images/archive/${currentArchiveIssue}-${category}-${article.id.split('-')[2]}.jpg">GRAFIKA (DO TEKSTU)</div>
-                        <div class="teaser-text">${article.title}</div>
-                    `;
-                    
-                    contentDiv.appendChild(teaserDiv);
-                });
-                
-                // Load images for this category
-                setTimeout(() => {
-                    loadImages();
-                }, 100);
-                
-                // Show category page
-                showPage(`archive-${category}`);
-            }
-        }
-
-        function showArchiveArticle(articleId) {
-            // Find the article in current issue
-            const issue = archiveIssues[currentArchiveIssue];
-            let foundArticle = null;
-            
-            Object.values(issue.articles).forEach(categoryArticles => {
-                const article = categoryArticles.find(a => a.id === articleId);
-                if (article) foundArticle = article;
-            });
-            
-            if (foundArticle) {
-                // Update article template with content
-                document.getElementById('article-title').textContent = foundArticle.title;
-                document.getElementById('article-text').textContent = foundArticle.content;
-                
-                // Show article page
-                showPage('article-template');
-            }
-        }
-        let currentSlideIndex = 0;
-        let slides = [];
-        let indicators = [];
-
-        // Slideshow functionality
-        function showSlide(index) {
-            // Hide all slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            // Show current slide
-            if (slides[index]) {
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-            }
-        }
-
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            
-            // Loop around
-            if (currentSlideIndex >= slides.length) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = slides.length - 1;
-            }
-            
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index - 1; // Convert to 0-based index
-            showSlide(currentSlideIndex);
-        }
-
-        // Load archive cover images
-        function loadArchiveImages() {
-            const archiveImages = document.querySelectorAll('.slide-image[data-image]');
-            archiveImages.forEach(imageDiv => {
-                const imagePath = imageDiv.getAttribute('data-image');
-                if (imagePath) {
-                    const img = new Image();
-                    img.onload = function() {
-                        imageDiv.style.backgroundImage = `url(${imagePath})`;
-                        imageDiv.style.color = 'white';
-                        imageDiv.style.textShadow = '2px 2px 4px rgba(0,0,0,0.8)';
-                    };
-                    img.onerror = function() {
-                        // Keep text if image doesn't load
-                        imageDiv.style.backgroundColor = '#daa520';
-                    };
-                    img.src = imagePath;
-                }
-            });
-        }
-
-        // Initialize slideshow when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadImages();
-            loadArchiveImages();
-            
-            // Initialize slideshow variables after DOM is loaded
-            setTimeout(() => {
-                slides = document.querySelectorAll('.slide');
-                indicators = document.querySelectorAll('.indicator');
-                currentSlideIndex = 0;
-                showSlide(0);
-            }, 100);
-        });
-
-        function loadImages() {
-            const imageLabels = document.querySelectorAll('.teaser-label[data-image]');
-            imageLabels.forEach(label => {
-                const imagePath = label.getAttribute('data-image');
-                if (imagePath) {
-                    // Try to load image, fallback to text if image doesn't exist
-                    const img = new Image();
-                    img.onload = function() {
-                        label.style.backgroundImage = `url(${imagePath})`;
-                        label.style.color = 'white';
-                        label.style.textShadow = '2px 2px 4px rgba(0,0,0,0.8)';
-                    };
-                    img.onerror = function() {
-                        // Keep text if image doesn't load
-                        label.style.backgroundColor = '#daa520';
-                    };
-                    img.src = imagePath;
-                }
-            });
-        }
-
-        // Page navigation
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-        }
-
-        // Article display
-        function showArticle(articleId) {
-            const article = articles[articleId];
-            if (article) {
-                // Update article template with content
-                document.getElementById('article-title').textContent = article.title;
-                document.getElementById('article-text').textContent = article.content;
-                
-                // Show article page
-                showPage('article-template');
-            }
-        }
-
-        // Content management object
-        const content = {
-            siteTitle: "Design stron",
-            logo: "Logo",
-            categories: {
-                fikcja: [
-                    {text: "Opowiadanie I - \"Zagubiona w czasie\"", articleId: "fiction1"},
-                    {text: "Opowiadanie II - \"Miasto snów\"", articleId: "fiction2"},
-                    {text: "Nowela - \"Ostatnie lato\"", articleId: "fiction3"}
-                ],
-                realia: [
-                    {text: "Reportaż I - \"Życie na granicy\"", articleId: "realia1"},
-                    {text: "Wywiad - \"Rozmowa z artystą\"", articleId: "realia2"},
-                    {text: "Esej - \"Współczesna kultura\"", articleId: "realia3"}
-                ],
-                poezja: [
-                    {text: "Cykl wierszy - \"Pory roku\"", articleId: "poetry1"},
-                    {text: "Sonety - \"Miłość miejska\"", articleId: "poetry2"},
-                    {text: "Poemat - \"Droga do domu\"", articleId: "poetry3"}
-                ]
-            }
-        };
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>

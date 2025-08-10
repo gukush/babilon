@@ -1,0 +1,31 @@
+{
+  "title": "Numer I — Inaugural Issue",
+  "subtitle": "Pierwszy numer magazynu",
+  "date": "Styczeń 2024",
+  "articles": {
+    "fikcja": [
+      {
+        "file": "zagubiona-w-czasie.txt",
+        "title": "Zagubiona w czasie",
+        "author": "Jan Kowalski",
+        "teaserImage": ""
+      }
+    ],
+    "realia": [
+      {
+        "file": "zycie-na-granicy.txt",
+        "title": "Życie na granicy",
+        "author": "Katarzyna Wiśniewska",
+        "teaserImage": ""
+      }
+    ],
+    "poezja": [
+      {
+        "file": "pory-roku.txt",
+        "title": "Pory roku",
+        "author": "Piotr Szymański",
+        "teaserImage": ""
+      }
+    ]
+  }
+}

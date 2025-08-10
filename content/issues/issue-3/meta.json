@@ -1,0 +1,31 @@
+{
+  "title": "Numer III — Summer Special",
+  "subtitle": "Letni numer specjalny",
+  "date": "Czerwiec 2024",
+  "articles": {
+    "fikcja": [
+      {
+        "file": "ostatnie-lato.txt",
+        "title": "Ostatnie lato",
+        "author": "Marek Zieliński",
+        "teaserImage": ""
+      }
+    ],
+    "realia": [
+      {
+        "file": "wspolczesna-kultura.txt",
+        "title": "Współczesna kultura",
+        "author": "Ewa Kowalczyk",
+        "teaserImage": ""
+      }
+    ],
+    "poezja": [
+      {
+        "file": "droga-do-domu.txt",
+        "title": "Droga do domu",
+        "author": "Jan Kowalski",
+        "teaserImage": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Numer II — Spring Edition",
+  "subtitle": "Wiosenny numer",
+  "date": "Marzec 2024",
+  "articles": {
+    "fikcja": [
+      {
+        "file": "miasto-snow.txt",
+        "title": "Miasto snów",
+        "author": "Anna Nowak",
+        "teaserImage": ""
+      }
+    ],
+    "realia": [
+      {
+        "file": "rozmowa-z-artysta.txt",
+        "title": "Rozmowa z artystą",
+        "author": "Tomasz Borowski",
+        "teaserImage": ""
+      }
+    ],
+    "poezja": [
+      {
+        "file": "milosc-miejska.txt",
+        "title": "Miłość miejska",
+        "author": "Magdalena Dąbrowska",
+        "teaserImage": ""
+      }
+    ]
+  }
+}

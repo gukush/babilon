@@ -1,0 +1,87 @@
+{
+  "siteTitle": "Magazyn",
+  "logo": "Nazwa Magazynu",
+  "issues": [
+    {
+      "slug": "issue-1",
+      "title": "Numer I — Inaugural Issue",
+      "subtitle": "Pierwszy numer magazynu",
+      "date": "Styczeń 2024"
+    },
+    {
+      "slug": "issue-2",
+      "title": "Numer II — Spring Edition",
+      "subtitle": "Wiosenny numer",
+      "date": "Marzec 2024"
+    },
+    {
+      "slug": "issue-3",
+      "title": "Numer III — Summer Special",
+      "subtitle": "Letni numer specjalny",
+      "date": "Czerwiec 2024"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "initials": "J.K.",
+      "fullName": "Jan Kowalski",
+      "photo": ""
+    },
+    {
+      "id": 2,
+      "initials": "A.N.",
+      "fullName": "Anna Nowak",
+      "photo": ""
+    },
+    {
+      "id": 3,
+      "initials": "M.Z.",
+      "fullName": "Marek Zieliński",
+      "photo": ""
+    },
+    {
+      "id": 4,
+      "initials": "K.W.",
+      "fullName": "Katarzyna Wiśniewska",
+      "photo": ""
+    },
+    {
+      "id": 5,
+      "initials": "T.B.",
+      "fullName": "Tomasz Borowski",
+      "photo": ""
+    },
+    {
+      "id": 6,
+      "initials": "E.K.",
+      "fullName": "Ewa Kowalczyk",
+      "photo": ""
+    },
+    {
+      "id": 7,
+      "initials": "P.S.",
+      "fullName": "Piotr Szymański",
+      "photo": ""
+    },
+    {
+      "id": 8,
+      "initials": "M.D.",
+      "fullName": "Magdalena Dąbrowska",
+      "photo": ""
+    }
+  ],
+  "support": {
+    "title": "Wesprzyj nas",
+    "description": "Pomóż nam tworzyć niezależny magazyn. Twoja darowizna idzie na honoraria, serwer i nowe inicjatywy.",
+    "buttonText": "PRZYCISK DO PAPAŁA",
+    "paypalLink": "https://paypal.me/example",
+    "bankAccount": "12 3456 7890 1234 5678 9012 3456",
+    "additionalInfo": "Dziękujemy za każde wsparcie!",
+    "goals": [
+      "Opłacanie autorów",
+      "Utrzymanie serwera",
+      "Promocja wydań specjalnych"
+    ]
+  }
+}
